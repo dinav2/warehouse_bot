@@ -1,0 +1,16 @@
+# Ignorar carpetas de colcon
+build/
+install/
+log/
+
+# Archivos temporales
+*.tmp
+*.swp
+*.swo
+
+# Core
+core
+
+
+# Videos
+*.mkv
