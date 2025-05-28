@@ -11,6 +11,8 @@ log/
 # Core
 core
 
+# IDEs
+.vscode
 
 # Videos
 *.mkv
