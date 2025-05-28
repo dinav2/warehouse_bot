@@ -14,6 +14,7 @@ setup(
         ('share/' + package_name, ['package.xml']),
 	(os.path.join('share',package_name,'worlds'),glob(os.path.join('worlds','*.*'))),
 	(os.path.join('share',package_name,'launch'),glob(os.path.join('launch','*launch.py'))), 
+	(os.path.join('share',package_name,'models', 'warehouse1'),glob('models/warehouse1/*.*')),
    ],
     install_requires=['setuptools'],
     zip_safe=True,
