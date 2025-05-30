@@ -2,7 +2,7 @@
 <!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot name="yahboomcar_R2" xmlns:xacro="http://ros.org/wiki/xacro">
+<robot name="rosmaster" xmlns:xacro="http://ros.org/wiki/xacro">
   <!--xacro:include filename="$(find yahboomcar_description)/urdf/yahboomcar_R2.gazebo.xacro"/-->
   <link name="imu_link"/>
   <link
@@ -27,7 +27,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/base_link.STL" />
+          filename="package://rosmaster_description/meshes/base_link.STL" />
       </geometry>
       <material
         name="">
@@ -41,7 +41,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/base_link.STL" />
+          filename="package://rosmaster_description/meshes/base_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -67,7 +67,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/back_right_link.STL" />
+          filename="package://rosmaster_description/meshes/back_right_link.STL" />
       </geometry>
       <material
         name="">
@@ -81,7 +81,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/back_right_link.STL" />
+          filename="package://rosmaster_description/meshes/back_right_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -120,7 +120,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/back_right_link.STL" />
+          filename="package://rosmaster_description/meshes/back_right_link.STL" />
       </geometry>
       <material
         name="">
@@ -134,7 +134,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/back_right_link.STL" />
+          filename="package://rosmaster_description/meshes/back_right_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -173,7 +173,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/front_left_steer.STL" />
+          filename="package://rosmaster_description/meshes/front_left_steer.STL" />
       </geometry>
       <material
         name="">
@@ -187,7 +187,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/front_left_steer.STL" />
+          filename="package://rosmaster_description/meshes/front_left_steer.STL" />
       </geometry>
     </collision>
   </link>
@@ -231,7 +231,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/back_right_link.STL" />
+          filename="package://rosmaster_description/meshes/back_right_link.STL" />
       </geometry>
       <material
         name="">
@@ -245,7 +245,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/back_right_link.STL" />
+          filename="package://rosmaster_description/meshes/back_right_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -284,7 +284,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/front_left_steer.STL" />
+          filename="package://rosmaster_description/meshes/front_left_steer.STL" />
       </geometry>
       <material
         name="">
@@ -298,7 +298,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/front_left_steer.STL" />
+          filename="package://rosmaster_description/meshes/front_left_steer.STL" />
       </geometry>
     </collision>
   </link>
@@ -342,7 +342,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/back_right_link.STL" />
+          filename="package://rosmaster_description/meshes/back_right_link.STL" />
       </geometry>
       <material
         name="">
@@ -356,7 +356,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/back_right_link.STL" />
+          filename="package://rosmaster_description/meshes/back_right_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -395,7 +395,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/camera_link.STL" />
+          filename="package://rosmaster_description/meshes/camera_link.STL" />
       </geometry>
       <material
         name="">
@@ -409,7 +409,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/camera_link.STL" />
+          filename="package://rosmaster_description/meshes/camera_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -448,7 +448,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/laser_link.STL" />
+          filename="package://rosmaster_description/meshes/laser_link.STL" />
       </geometry>
       <material
         name="">
@@ -462,7 +462,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://yahboomcar_description/meshes/laser_link.STL" />
+          filename="package://rosmaster_description/meshes/laser_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -537,4 +537,41 @@
       <mechanicalReduction>1</mechanicalReduction>
     </actuator>
   </transmission-->
+<gazebo reference="laser_link">
+    <sensor name="lidar_sensor" type="ray">
+      <pose>0 0 0 0 0 0</pose>
+      <visualize>true</visualize>
+      <update_rate>10.0</update_rate>
+      <ray>
+        <scan>
+          <horizontal>
+            <samples>720</samples>
+            <resolution>1</resolution>
+            <min_angle>-3.14159</min_angle> <!-- -180 grados -->
+            <max_angle>3.14159</max_angle>  <!-- +180 grados -->
+          </horizontal>
+        </scan>
+        <range>
+          <min>0.12</min>
+          <max>6.0</max>
+          <resolution>0.01</resolution>
+        </range>
+        <noise>
+          <type>gaussian</type>
+          <mean>0.0</mean>
+          <stddev>0.01</stddev>
+        </noise>
+      </ray>
+      <plugin name="gazebo_ros_laser_controller" filename="libgazebo_ros_ray_sensor.so">
+        <ros>
+          <namespace>/</namespace>
+          <remapping>~/out:=scan</remapping>
+        </ros>
+        <frame_name>laser_link</frame_name>
+        <topic_name>scan</topic_name>
+	<output_type>sensor_msgs/LaserScan</output_type>
+      </plugin>
+    </sensor>
+  </gazebo>
+
 </robot>
