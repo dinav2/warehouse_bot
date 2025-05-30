@@ -15,7 +15,7 @@ def generate_launch_description():
     urdf_path = get_package_share_path('rosmaster_description')
     
     # Path to the URDF and RViz configuration files
-    default_model_path = os.path.join(urdf_path, 'urdf', 'yahboomcar_R2.urdf')
+    default_model_path = os.path.join(urdf_path, 'urdf', 'yahboomcar_R2.urdf.xacro')
     default_rviz_config_path = os.path.join(urdf_path, 'rviz', 'urdf.rviz')
     
     # Launch configuration variables
@@ -24,7 +24,8 @@ def generate_launch_description():
     rviz_config_file = LaunchConfiguration('rviz_config_file')
     use_simulator = LaunchConfiguration('use_simulator')
     use_rviz = LaunchConfiguration('use_rviz')
-    
+
+    print(f"URDF: {default_model_path}") 
     # Declare the launch arguments
     declare_model_path_cmd = DeclareLaunchArgument(
         name='urdf_model',
@@ -55,11 +56,11 @@ def generate_launch_description():
     robot_description_content = Command(
         [
             'xacro ',
-            urdf_model
+            default_model_path
         ]
     )
     
-    robot_description = {'robot_description': ParameterValue(robot_description_content, value_type=ParameterValue.PARAMETER_VALUE)}
+    robot_description = {'robot_description': ParameterValue(robot_description_content, value_type=str)}
     
     # Start Gazebo
     gazebo = IncludeLaunchDescription(
@@ -72,10 +73,18 @@ def generate_launch_description():
     spawn_entity = Node(
         package='gazebo_ros',
         executable='spawn_entity.py',
-        arguments=['-topic', 'robot_description', '-entity', 'robot'],
+        arguments=['-topic', 'robot_description', '-entity', 'robot','-x','-0.8','-y','-0.9','-z','0.0255'],
         condition=IfCondition(use_simulator),
         output='screen'
     )
+
+    # Spawn model
+    spawn_warehouse = Node(
+        package='gazebo_ros',
+        executable='spawn_entity.py',
+        arguments=['-file', '/root/tsuru_ws/src/rosmaster_simulation/models/warehouse1/model.sdf', '-entity', 'warehouse'],
+    )
+
     
     # Joint State Publisher
     joint_state_publisher_node = Node(
@@ -106,6 +115,7 @@ def generate_launch_description():
         executable='rviz2',
         name='rviz2',
         output='screen',
+	parameters=[{'use_sim_time': True}],
         arguments=['-d', rviz_config_file],
         condition=IfCondition(use_rviz)
     )
@@ -122,5 +132,6 @@ def generate_launch_description():
         robot_state_publisher_node,
         gazebo,
         spawn_entity,
+	spawn_warehouse,
         rviz_node
     ])
