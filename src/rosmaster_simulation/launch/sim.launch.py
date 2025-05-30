@@ -15,7 +15,7 @@ def generate_launch_description():
     urdf_path = get_package_share_path('rosmaster_description')
     
     # Path to the URDF and RViz configuration files
-    default_model_path = os.path.join(urdf_path, 'urdf', 'yahboomcar_R2.urdf.xacro')
+    default_model_path = os.path.join(urdf_path, 'urdf', 'rosmaster.urdf.xacro')
     default_rviz_config_path = os.path.join(urdf_path, 'rviz', 'urdf.rviz')
     
     # Launch configuration variables

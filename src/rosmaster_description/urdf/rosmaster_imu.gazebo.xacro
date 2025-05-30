@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+<xacro:macro name="rosmaster_imu_plugin" params="" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+  <gazebo reference="imu_link">
+    <sensor type="imu" name="imu_sensor">
+      <update_rate>50.0</update_rate>
+      <always_on>true</always_on>
+      <visualize>true</visualize>
+      <plugin name="imu_plugin" filename="libgazebo_ros_imu_sensor.so">
+        <ros>
+          <namespace>/</namespace>
+          <remapping>imu:=imu/data</remapping>
+        </ros>
+        <frame_name>imu_link</frame_name>
+      </plugin>
+    </sensor>
+  </gazebo>
+</xacro:macro>
+</robot>

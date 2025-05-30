@@ -2,8 +2,10 @@
 <!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com) 
      Commit Version: 1.5.1-0-g916b5db  Build Version: 1.5.7152.31018
      For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
-<robot
-  name="rosmaster">
+<robot name="rosmaster" xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:include filename="$(find rosmaster_description)/urdf/rosmaster_lidar.gazebo.xacro"/>
+  <xacro:include filename="$(find rosmaster_description)/urdf/rosmaster_imu.gazebo.xacro"/>
+  <link name="imu_link"/>
   <link
     name="base_link">
     <inertial>
@@ -95,7 +97,7 @@
     <child
       link="back_right_link" />
     <axis
-      xyz="0 -1 0" />
+      xyz="0 1 0" />
   </joint>
   <link
     name="back_left_link">
@@ -201,12 +203,12 @@
     <child
       link="front_left_steer" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0 0 1" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      lower="-0.6"
+      upper="0.6"
+      effort="10"
+      velocity="1" />
   </joint>
   <link
     name="front_left_wheel">
@@ -312,12 +314,12 @@
     <child
       link="front_right_steer" />
     <axis
-      xyz="0 0 -1" />
+      xyz="0 0 1" />
     <limit
-      lower="0"
-      upper="0"
-      effort="0"
-      velocity="0" />
+      lower="-0.6"
+      upper="0.6"
+      effort="10"
+      velocity="1" />
   </joint>
   <link
     name="front_right_wheel">
@@ -394,7 +396,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rosmaster_description/meshes/camera_link_R2.STL" />
+          filename="package://rosmaster_description/meshes/camera_link.STL" />
       </geometry>
       <material
         name="">
@@ -408,7 +410,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rosmaster_description/meshes/camera_link_R2.STL" />
+          filename="package://rosmaster_description/meshes/camera_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -447,7 +449,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rosmaster_description/meshes/laser_link_R2.STL" />
+          filename="package://rosmaster_description/meshes/laser_link.STL" />
       </geometry>
       <material
         name="">
@@ -461,7 +463,7 @@
         rpy="0 0 0" />
       <geometry>
         <mesh
-          filename="package://rosmaster_description/meshes/laser_link_R2.STL" />
+          filename="package://rosmaster_description/meshes/laser_link.STL" />
       </geometry>
     </collision>
   </link>
@@ -470,7 +472,7 @@
     type="fixed">
     <origin
       xyz="0.012548 0 0.1311"
-      rpy="0 0 0" />
+      rpy="0 0 3.1416" />
     <parent
       link="base_link" />
     <child
@@ -478,4 +480,64 @@
     <axis
       xyz="0 0 0" />
   </joint>
+
+  <joint name="base_imu" type="fixed">
+    <parent link="base_link"/>
+    <child link="imu_link"/>
+    <origin xyz="-0.05 0.0 0.05" rpy="0 3.1415 1.5707"/>
+  </joint>
+
+  <link name="base_footprint"/>
+  <joint name="base_joint" type="fixed">
+    <parent link="base_footprint"/>
+    <child link="base_link"/>
+    <origin xyz="0.0 0.0 0.0215" rpy="0 0 0"/>
+  </joint>
+
+  <transmission name="front_right_steer_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_right_steer_joint" >
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_right_steer_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+      <motorTorqueConstant>100</motorTorqueConstant>
+    </actuator>
+  </transmission>  
+  
+  <transmission name="front_left_steer_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="front_left_steer_joint" >
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="front_left_steer_joint_motor">
+      <hardwareInterface>hardware_interface/EffortJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+      <motorTorqueConstant>100</motorTorqueConstant>
+    </actuator>
+  </transmission>
+ <transmission name="back_right_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_right_joint" >
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="back_right_joint_motor">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>      
+  
+  <transmission name="back_left_joint_trans">
+    <type>transmission_interface/SimpleTransmission</type>
+    <joint name="back_left_joint" >
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+    </joint>
+    <actuator name="back_right_left_motor">
+      <hardwareInterface>hardware_interface/VelocityJointInterface</hardwareInterface>
+      <mechanicalReduction>1</mechanicalReduction>
+    </actuator>
+  </transmission>
+  <xacro:rosmaster_lidar_plugin/>
+  <xacro:rosmaster_imu_plugin/>
 </robot>
