@@ -5,6 +5,7 @@
 <robot name="rosmaster" xmlns:xacro="http://ros.org/wiki/xacro">
   <xacro:include filename="$(find rosmaster_description)/urdf/rosmaster_lidar.gazebo.xacro"/>
   <xacro:include filename="$(find rosmaster_description)/urdf/rosmaster_imu.gazebo.xacro"/>
+  <xacro:include filename="$(find rosmaster_description)/urdf/rosmaster_ackermann.gazebo.xacro"/>
   <link name="imu_link"/>
   <link
     name="base_link">
@@ -540,4 +541,5 @@
   </transmission>
   <xacro:rosmaster_lidar_plugin/>
   <xacro:rosmaster_imu_plugin/>
+  <xacro:rosmaster_ackermann_plugin/>
 </robot>

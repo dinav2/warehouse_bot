@@ -1,7 +1,7 @@
 from ament_index_python.packages import get_package_share_path
 
 from launch import LaunchDescription
-from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription
+from launch.actions import DeclareLaunchArgument, ExecuteProcess, IncludeLaunchDescription, TimerAction
 from launch.conditions import IfCondition, UnlessCondition
 from launch.launch_description_sources import PythonLaunchDescriptionSource
 from launch.substitutions import Command, LaunchConfiguration, PathJoinSubstitution
@@ -106,9 +106,46 @@ def generate_launch_description():
     robot_state_publisher_node = Node(
         package='robot_state_publisher',
         executable='robot_state_publisher',
-        parameters=[robot_description]
+        parameters=[robot_description, {'use_sim_time': True}]
     )
     
+
+    # Controller Manager
+    control = Node(
+        package='controller_manager',
+	executable='ros2_control_node',
+	parameters=[
+	    robot_description,
+	    {'use_sim_time': True},
+	    os.path.join(
+		get_package_share_path('rosmaster_description'),
+		'params',
+		'joint_controller.yaml'
+	    )
+	],
+	output='both'
+    )
+
+    # Load Controllers
+    load_controllers = [
+	TimerAction(
+            period=50.0,
+	    actions=[
+	        Node(
+	            package='controller_manager',
+	            executable='spawner.py',
+	            arguments=['ackermann_steering_controller', '-c', '/controller_manager'],
+	        ),
+	        Node(
+	            package='controller_manager',
+	            executable='spawner.py',
+	            arguments=['joint_state_broadcaster', '-c', '/controller_manager'],
+	        ),
+	    ]
+	)
+    ]
+
+
     # RViz
     rviz_node = Node(
         package='rviz2',
@@ -133,5 +170,6 @@ def generate_launch_description():
         gazebo,
         spawn_entity,
 	spawn_warehouse,
+	*load_controllers,
         rviz_node
     ])

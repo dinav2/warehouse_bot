@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro">
+  <xacro:macro name="rosmaster_ackermann_plugin" params="" xmlns:xacro="http://www.ros.org/wiki/xacro">
+    <ros2_control name="RosmasterControl" type="system">
+      <hardware>
+        <plugin>gazebo_ros2_control/GazeboSystem</plugin>
+      </hardware>
+
+      <!-- Front Left Steer -->
+      <joint name="front_left_steer_joint">
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <!-- Front Right Steer -->
+      <joint name="front_right_steer_joint">
+        <command_interface name="position"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+
+      <!-- Back Left Wheel -->
+      <joint name="back_left_joint">
+        <command_interface name="velocity"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+
+       <!-- Back Right Wheel -->
+      <joint name="back_right_joint">
+        <command_interface name="velocity"/>
+        <state_interface name="position"/>
+        <state_interface name="velocity"/>
+      </joint>
+    </ros2_control>
+
+    <gazebo>
+      <plugin name="gazebo_ros2_control" filename="libgazebo_ros2_control.so">
+        <parameters>$(find rosmaster_description)/params/joint_controller.yaml</parameters>
+      </plugin>
+    </gazebo>
+  </xacro:macro>
+</robot>
