@@ -1,0 +1,34 @@
+amcl:
+  ros__parameters:
+    use_sim_time: false
+    base_frame_id: base_footprint
+    odom_frame_id: odom
+    global_frame_id: map
+    scan_topic: scan
+    tf_broadcast: true
+
+    # Filtro de particulas
+    min_particles: 3000
+    max_particles: 5000
+    resample_interval: 2
+
+    # Ruido del odometria
+    alpha1: 0.2  # rotacion por rotacion
+    alpha2: 0.2  # traslacion por rotacion
+    alpha3: 0.3  # traslacion por traslacion
+    alpha4: 0.3  # rotacion por traslacion
+    alpha5: 0.1  # error del sensor de laser
+
+    # Umbrales de actualizacion
+    update_min_d: 0.01
+    update_min_a: 0.01
+
+    # Tolerancia en transformaciones
+    transform_tolerance: 0.2
+
+    # LIDAR
+    laser_max_range: 4.0
+    laser_model_type: likelihood_field
+    use_map_topic: true
+    first_map_only: false
+    set_initial_pose: true
