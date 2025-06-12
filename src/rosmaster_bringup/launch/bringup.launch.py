@@ -103,6 +103,31 @@ def generate_launch_description():
         executable='yahboom_joy_R2',
     )
 
+    vision_launch_path = os.path.join(
+        get_package_share_directory('vision'),
+        'launch',
+        'main_launch.py'
+    )
+
+    vision_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(vision_launch_path)
+    )
+
+    initial_pose_node = Node(
+        package='vision',
+        executable='initial_pose_node',
+    )
+
+    planner_launch_path = os.path.join(
+        get_package_share_directory('rosmaster_planner'),
+        'launch',
+        'planner.launch.py'
+    )
+
+    planner_launch = IncludeLaunchDescription(
+        PythonLaunchDescriptionSource(planner_launch_path)
+    )
+
     return LaunchDescription([
         gui_arg,
         model_arg,
@@ -112,9 +137,12 @@ def generate_launch_description():
         joint_state_publisher_gui_node,
         robot_state_publisher_node,
         #rviz_node,
+        vision_launch,
         driver_node,
         base_node,
         imu_filter_node,
         ekf_node,
-        yahboom_joy_node
+        initial_pose_node,
+        yahboom_joy_node,
+        planner_launch
     ])
