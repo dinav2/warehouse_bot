@@ -8,9 +8,14 @@ amcl:
     tf_broadcast: true
 
     # Filtro de particulas
-    min_particles: 3000
-    max_particles: 5000
-    resample_interval: 2
+    min_particles: 3500
+    max_particles: 5500
+    resample_interval: 1
+
+    # Covarianza inicial
+    initial_cov_xx: 0.01
+    initial_cov_yy: 0.01
+    initial_cov_aa: 0.01
 
     # Ruido del odometria
     alpha1: 0.2  # rotacion por rotacion
@@ -20,14 +25,14 @@ amcl:
     alpha5: 0.1  # error del sensor de laser
 
     # Umbrales de actualizacion
-    update_min_d: 0.01
+    update_min_d: 0.005
     update_min_a: 0.01
 
     # Tolerancia en transformaciones
     transform_tolerance: 0.2
 
     # LIDAR
-    laser_max_range: 4.0
+    laser_max_range: 3.0
     laser_model_type: likelihood_field
     use_map_topic: true
     first_map_only: false
