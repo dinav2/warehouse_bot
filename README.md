@@ -187,7 +187,7 @@ Key parameters can be modified in launch files:
 - `map_scale_factor`: Map resolution scaling (default: 10.0)
 - Goal positions defined in planning node
 
-## 🗂️ Project Structure
+## Project Structure
 
 ```
 warehouse_bot/
@@ -203,7 +203,7 @@ warehouse_bot/
 └── README.md                     # This file
 ```
 
-## 🐛 Troubleshooting
+## Troubleshooting
 
 ### Common Issues
 
@@ -240,7 +240,7 @@ ros2 run rviz2 rviz2
 ros2 run tf2_tools view_frames
 ```
 
-## 📋 TODO / Future Enhancements
+## Future Enhancements
 
 - [ ] Add multi-robot coordination capabilities
 - [ ] Implement advanced obstacle avoidance algorithms
@@ -249,6 +249,6 @@ ros2 run tf2_tools view_frames
 - [ ] Add support for dynamic obstacle detection
 
 
-## 📄 License
+## License
 
 This project is licensed under the MIT License - see the LICENSE file for details.
