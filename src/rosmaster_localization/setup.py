@@ -2,7 +2,7 @@ from setuptools import setup
 import os
 from glob import glob
 
-package_name = 'rosmaster_planner'
+package_name = 'rosmaster_localization'
 
 setup(
     name=package_name,
@@ -25,10 +25,10 @@ setup(
     tests_require=['pytest'],
     entry_points={
         'console_scripts': [
-            'planner_node = rosmaster_planner.planner_node:main',
-            'mission_planner = rosmaster_planner.mission_planner:main',
-	    'path_planner = rosmaster_planner.path_planner:main',
-            'visualizer = rosmaster_planner.visualizer:main',
+            'planner_node = rosmaster_localization.planner_node:main',
+            'mission_planner = rosmaster_localization.mission_planner:main',
+	    'path_planner = rosmaster_localization.path_planner:main',
+            'visualizer = rosmaster_localization.visualizer:main',
         ],
     },
 )
